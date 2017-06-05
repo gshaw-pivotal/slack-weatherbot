@@ -1,0 +1,6 @@
+---
+applications:
+- name: weather-bot
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  memory: 512M
+  command: node src/weather_bot.js
