@@ -38,14 +38,15 @@ After being invited into a slack channel, the bot can be interacted with the fol
 
 1. '@weatherbot help' results in the bot responding with instructions on how to use it.
 2. '@weatherbot uptime' results in the bot responding with how long it has been online.
-3. '@weatherbot weather [location]' results in the bot responding with the current weather at the provided location (based on Dark Sky's interpretation of said location).
-4. '@weatherbot temp|temperature [location]' results in the bot responding with the current temperature at the provided location.
-5. '@weatherbot rain [location]' results in the bot responding with whether it is currently raining at the provided location.
-6. '@weatherbot snow [location]' results in the bot responding with whether it is currently snowing at the provided location.
+3. '@weatherbot weather [location]' results in the bot responding with the current weather at the provided location (based on Dark Sky's interpretation of said location). This is a 'rich' response that utilises Slack's attachment option for nicer formatting.
+4. '@weatherbot weather-text [location]' like the previous command, expect the response is a simpler plain text response with the current weather at the provided location.
+5. '@weatherbot temp|temperature [location]' results in the bot responding with the current temperature at the provided location.
+6. '@weatherbot rain [location]' results in the bot responding with whether it is currently raining at the provided location.
+7. '@weatherbot snow [location]' results in the bot responding with whether it is currently snowing at the provided location.
 
-Only one location per message is supported, as the bot takes the location to be everything after the command (eg. after weather), hence the message '@weatherbot weather new york city' is interpreted to be a request for the weather in New York City.
+Only one location per message is supported, as the bot takes the location to be everything after the command (eg. after weather or weather-text), hence the message '@weatherbot weather new york city' is interpreted to be a request for the weather in New York City.
 
-When the weather for a location is requested the bot responds in the following format;
+When the weather for a location is requested using the 'weather-text' option the bot responds in the following format;
 
 ```
    The current weather in [location] is:

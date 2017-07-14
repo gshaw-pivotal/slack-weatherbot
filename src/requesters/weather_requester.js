@@ -14,7 +14,12 @@ makeWeatherRequest = function (controller, bot, causeMessage, location, outputOp
 
         var forecast = JSON.parse(body);
 
-        issueResponse(controller, bot, causeMessage, formatWeather(forecast, location, outputOption))
+        if (richFormatMessage) {
+            issueResponse(controller, bot, causeMessage, formatRichWeather(forecast, location))
+        }
+        else {
+            issueResponse(controller, bot, causeMessage, formatTextWeather(forecast, location, outputOption))
+        }
     });
 };
 
