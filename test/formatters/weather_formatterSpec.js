@@ -46,16 +46,56 @@ describe("weather formatter", function () {
         var location = 'london';
         var expectation;
 
-        it("for all weather request returns a full weather report", function() {
-            expectation = 'The current weather in ' + location + ' is: \n' +
-                weatherServiceData.weather[0].description +
-                '\n with a humidity of ' + weatherServiceData.main.humidity + '%' +
-                '\n and a wind speed of ' + weatherServiceData.wind.speed +
-                '\n at ' + weatherServiceData.main.temp + 'K, ' +
-                convertKtoF(weatherServiceData.main.temp) + 'F, ' +
-                convertKtoC(weatherServiceData.main.temp) + 'C'
+        describe("for the plain text response", function () {
+            it("for all weather request returns a full weather report", function() {
+                expectation = 'The current weather in ' + location + ' is: \n' +
+                    weatherServiceData.weather[0].description +
+                    '\n with a humidity of ' + weatherServiceData.main.humidity + '%' +
+                    '\n and a wind speed of ' + weatherServiceData.wind.speed +
+                    '\n at ' + weatherServiceData.main.temp + 'K, ' +
+                    convertKtoF(weatherServiceData.main.temp) + 'F, ' +
+                    convertKtoC(weatherServiceData.main.temp) + 'C'
 
-            expect(formatTextWeather(weatherServiceData, location, 'all')).to.equal(expectation);
+                expect(formatTextWeather(weatherServiceData, location, 'all')).to.equal(expectation);
+            });
+        });
+
+        describe("for the rich response", function () {
+            it("returns a weather report header that indicates the location requested by the user", function () {
+                expectation = 'The current weather in ' + location + ' is:';
+
+                expect(formatRichWeather(weatherServiceData, location).attachments[0].pretext).to.include(expectation);
+            });
+
+            it("returns a weather report that contains a description of the current weather", function () {
+                expectation = 'It is currently:';
+
+                expect(formatRichWeather(weatherServiceData, location).attachments[1].text).to.include(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[1].fields[0].title).to.include(weatherServiceData.weather[0].description);
+            });
+
+            it("returns a weather report that contains the current humidity", function () {
+                expectation = 'The current humidity is:';
+
+                expect(formatRichWeather(weatherServiceData, location).attachments[2].text).to.include(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[2].fields[0].title).to.include(weatherServiceData.main.humidity + '%');
+            });
+
+            it("returns a weather report that contains the current wind speed", function () {
+                expectation = 'The current wind speed is:';
+
+                expect(formatRichWeather(weatherServiceData, location).attachments[3].text).to.include(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[3].fields[0].title).to.equal(weatherServiceData.wind.speed);
+            });
+
+            it("returns a weather report that contains the current temperature", function () {
+                expectation = 'The current temperature is:';
+
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].text).to.include(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[0].title).to.include(weatherServiceData.main.temp + 'K');
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[1].title).to.include(convertKtoF(weatherServiceData.main.temp) + 'F');
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[2].title).to.include(convertKtoC(weatherServiceData.main.temp) + 'C');
+            });
         });
 
         it("for a temperature request returns a temperature report", function() {
