@@ -1,3 +1,5 @@
+var expect = require('chai').expect;
+
 require('../../src/formatters/weather_formatter.js');
 
 describe("weather formatter", function () {
@@ -53,7 +55,7 @@ describe("weather formatter", function () {
                 convertKtoF(weatherServiceData.main.temp) + 'F, ' +
                 convertKtoC(weatherServiceData.main.temp) + 'C'
 
-            expect(formatWeather(weatherServiceData, location, 'all')).toBe(expectation);
+            expect(formatWeather(weatherServiceData, location, 'all')).to.equal(expectation);
         });
 
         it("for a temperature request returns a temperature report", function() {
@@ -62,7 +64,7 @@ describe("weather formatter", function () {
                 convertKtoF(weatherServiceData.main.temp) + 'F, ' +
                 convertKtoC(weatherServiceData.main.temp) + 'C';
 
-            expect(formatWeather(weatherServiceData, location, 'temp')).toBe(expectation);
+            expect(formatWeather(weatherServiceData, location, 'temp')).to.equal(expectation);
         });
 
         describe("for a rain request returns a rain report", function() {
@@ -70,7 +72,7 @@ describe("weather formatter", function () {
             it('when the weather data indicates rain', function () {
                 expectation = 'It is currently raining in ' + location;
 
-                expect(formatWeather(weatherServiceData, location, 'rain')).toBe(expectation);
+                expect(formatWeather(weatherServiceData, location, 'rain')).to.equal(expectation);
             });
 
             it('when the weather data indicates no rain', function () {
@@ -78,7 +80,7 @@ describe("weather formatter", function () {
 
                 expectation = 'There is no rain currently in ' + location;
 
-                expect(formatWeather(weatherServiceData, location, 'rain')).toBe(expectation);
+                expect(formatWeather(weatherServiceData, location, 'rain')).to.equal(expectation);
             });
         });
 
@@ -89,7 +91,7 @@ describe("weather formatter", function () {
 
                 expectation = 'It is currently snowing in ' + location;
 
-                expect(formatWeather(weatherServiceData, location, 'snow')).toBe(expectation);
+                expect(formatWeather(weatherServiceData, location, 'snow')).to.equal(expectation);
             });
 
             it('when the weather data indicates no snow', function () {
@@ -97,7 +99,7 @@ describe("weather formatter", function () {
 
                 expectation = 'There is no snow falling in ' + location;
 
-                expect(formatWeather(weatherServiceData, location, 'snow')).toBe(expectation);
+                expect(formatWeather(weatherServiceData, location, 'snow')).to.equal(expectation);
             });
         });
     });
