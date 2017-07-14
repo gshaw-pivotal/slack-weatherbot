@@ -3,7 +3,7 @@ var request =  require('request');
 require('../formatters/weather_formatter.js');
 require('../responders/weather_responders.js');
 
-makeWeatherRequest = function (controller, bot, causeMessage, location, outputOption) {
+makeWeatherRequest = function (controller, bot, causeMessage, location, outputOption, richFormatMessage) {
     var apiKey = process.env.darksky;
     request('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=' + apiKey, function(error, response, body){
 
@@ -14,6 +14,10 @@ makeWeatherRequest = function (controller, bot, causeMessage, location, outputOp
 
         var forecast = JSON.parse(body);
 
-        postResponse(controller, bot, causeMessage, formatWeather(forecast, location, outputOption))
+        issueResponse(controller, bot, causeMessage, formatWeather(forecast, location, outputOption))
     });
+};
+
+issueResponse = function (controller, bot, causeMessage, responseMessage) {
+    postResponse(controller, bot, causeMessage, responseMessage);
 };
