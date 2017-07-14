@@ -46,15 +46,6 @@ formatRichWeather = function (forecast, location) {
             buildTemperatureWeatherAttachment('The current temperature is:', forecast.main.temp)
         ]
     };
-
-            // return 'The current weather in ' + location + ' is: \n' +
-            //     forecast.weather[0].description +
-            //     '\n with a humidity of ' + forecast.main.humidity + '%' +
-            //     '\n and a wind speed of ' + forecast.wind.speed +
-            //     '\n at ' + forecast.main.temp + 'K, ' +
-            //     convertKtoF(forecast.main.temp) + 'F, ' +
-            //     convertKtoC(forecast.main.temp) + 'C';
-
 };
 
 buildWeatherAttachment = function (messageText, dataPoint) {
