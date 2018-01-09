@@ -14,11 +14,17 @@ makeWeatherRequest = function (controller, bot, causeMessage, location, outputOp
 
         var forecast = JSON.parse(body);
 
-        if (richFormatMessage) {
-            issueResponse(controller, bot, causeMessage, formatRichWeather(forecast, location))
+        if (forecast.cod == 404) {
+            console.log("Request error: " + forecast.message);
+            postResponse(controller, bot, causeMessage, "Could not find location specified: " + location);
         }
         else {
-            issueResponse(controller, bot, causeMessage, formatTextWeather(forecast, location, outputOption))
+            if (richFormatMessage) {
+                issueResponse(controller, bot, causeMessage, formatRichWeather(forecast, location))
+            }
+            else {
+                issueResponse(controller, bot, causeMessage, formatTextWeather(forecast, location, outputOption))
+            }
         }
     });
 };
