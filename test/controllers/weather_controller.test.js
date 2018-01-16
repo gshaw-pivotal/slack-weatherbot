@@ -341,4 +341,72 @@ describe('weather controller test', () => {
             })
         })
     })
+
+    describe('for a request regarding weather', () => {
+        describe('upon receiving a direct message', () => {
+            it('when using `weather` responds with a message on weather conditions', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'direct_message',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'weather brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.attachments[0].pretext).toContain('The current weather in')
+                })
+            })
+        })
+
+        describe('upon receiving a direct mention', () => {
+            it('when using `weather` responds with a message on weather conditions', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'direct_mention',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'weather brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.attachments[0].pretext).toContain('The current weather in')
+                })
+            })
+        })
+
+        describe('upon receiving a mention', () => {
+            it('when using `weather` responds with a message on weather conditions', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'mention',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'weather brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.attachments[0].pretext).toContain('The current weather in')
+                })
+            })
+        })
+    })
 })
