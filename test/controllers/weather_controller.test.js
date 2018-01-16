@@ -145,4 +145,132 @@ describe('weather controller test', () => {
             })
         })
     })
+
+    describe('for a request regarding temperature', () => {
+        describe('upon receiving a direct message', () => {
+            it('when using `temp` responds with a message on weather conditions with regards to the temperature', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'direct_message',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'temp brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.text).toContain('The current temperature in')
+                })
+            })
+
+            it('when using `temperature` responds with a message on weather conditions with regards to the temperature', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'direct_message',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'temperature brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.text).toContain('The current temperature in')
+                })
+            })
+        })
+
+        describe('upon receiving a direct mention', () => {
+            it('when using `temp` responds with a message on weather conditions with regards to the temperature', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'direct_mention',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'temp brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.text).toContain('The current temperature in')
+                })
+            })
+
+            it('when using `temperature` responds with a message on weather conditions with regards to the temperature', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'direct_mention',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'temperature brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.text).toContain('The current temperature in')
+                })
+            })
+        })
+
+        describe('upon receiving a mention', () => {
+            it('when using `temp` responds with a message on weather conditions with regards to the temperature', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'mention',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'temp brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.text).toContain('The current temperature in')
+                })
+            })
+
+            it('when using `temperature` responds with a message on weather conditions with regards to the temperature', () => {
+                return this.bot.usersInput(
+                    [
+                        {
+                            type: 'mention',
+                            user: 'aUserId',
+                            channel: 'aChannel',
+                            messages: [
+                                {
+                                    text: 'temperature brisbane',
+                                    isAssertion: true
+                                }
+                            ]
+                        }
+                    ]
+                ).then((message) => {
+                    return expect(message.text).toContain('The current temperature in')
+                })
+            })
+        })
+    })
 })
