@@ -3,7 +3,7 @@ var request =  require('request');
 
 require('../requesters/weather_requester.js');
 
-setupWeatherController = function (controller) {
+module.exports = setupWeatherController = function (controller) {
     controller.hears(['weather-text (.*)'], 'direct_message,direct_mention,mention', function (bot, message) {
 
         var location = message.text.match(/weather-text (.*)/i)[1];
