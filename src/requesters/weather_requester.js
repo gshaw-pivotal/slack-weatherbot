@@ -4,7 +4,7 @@ require('../formatters/weather_formatter.js');
 require('../responders/weather_responders.js');
 
 makeWeatherRequest = function (controller, bot, causeMessage, location, outputOption, richFormatMessage) {
-    var apiKey = process.env.darksky;
+    var apiKey = process.env.openweather;
     request('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=' + apiKey, function(error, response, body){
 
         if (error != null) {

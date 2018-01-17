@@ -4,7 +4,7 @@
   "description": "Weather slackbot",
   "main": "src/weather_bot.js",
   "scripts": {
-    "test": "darksky=API_TOKEN jest"
+    "test": "openweather=OPEN_WEATHER_MAP_API_TOKEN jest"
   },
   "keywords": [
     "weather",

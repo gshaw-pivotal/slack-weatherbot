@@ -20,17 +20,31 @@ After the slackbot is running / deployed it will not have access to any channels
 
 ## Integration with Dark Sky ##
 
-This bot uses the [Dark Sky API](https://darksky.net/dev/) to get weather data. In order for this bot to work you will need a Dark Sky API token/key.
+This bot uses the [OpenWeatherMap API](https://openweathermap.org/api) to get weather data. In order for this bot to work you will need a OpenWeatherMap API token/key.
 
-Once you have said token/key, you will need to provide it to the bot as an environment variable named 'darksky'.
+Once you have said token/key, you will need to provide it to the bot as an environment variable named 'openweather'.
 
 ## Starting weatherbot Locally ##
 
 Weatherbot can be started locally with the following command executed from the root of this repo.
 
 ```
-    darksky=DARK_SKY_API_TOKEN token=SLACK_API_TOKEN node src/weather_bot.js
+    openweather=OPEN_WEATHER_MAP_API_TOKEN token=SLACK_API_TOKEN node src/weather_bot.js
 ```
+
+## Running tests ##
+
+To run the full test suite, you need to copy your OpenWeatherMap API token into package.json where the test script command line is located. This will allow the bot to successfully communicate with the 3rd party service.
+
+```
+    ...
+    scripts": {
+        "test": "openweather=OPEN_WEATHER_MAP_API_TOKEN jest"
+    },
+    ...
+```
+
+This in turn allows the weather_controller.test.js suite to execute successfully and also allow these test to act as integration tests as well.
 
 ## Using weatherbot ##
 
