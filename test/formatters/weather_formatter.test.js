@@ -1,5 +1,3 @@
-var expect = require('chai').expect;
-
 require('../../src/formatters/weather_formatter.js');
 
 describe("weather formatter", function () {
@@ -56,7 +54,7 @@ describe("weather formatter", function () {
                     convertKtoF(weatherServiceData.main.temp) + 'F, ' +
                     convertKtoC(weatherServiceData.main.temp) + 'C'
 
-                expect(formatTextWeather(weatherServiceData, location, 'all')).to.equal(expectation);
+                expect(formatTextWeather(weatherServiceData, location, 'all')).toBe(expectation);
             });
         });
 
@@ -64,37 +62,37 @@ describe("weather formatter", function () {
             it("returns a weather report header that indicates the location requested by the user", function () {
                 expectation = 'The current weather in ' + location + ' is:';
 
-                expect(formatRichWeather(weatherServiceData, location).attachments[0].pretext).to.include(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[0].pretext).toContain(expectation);
             });
 
             it("returns a weather report that contains a description of the current weather", function () {
                 expectation = 'It is currently:';
 
-                expect(formatRichWeather(weatherServiceData, location).attachments[1].text).to.include(expectation);
-                expect(formatRichWeather(weatherServiceData, location).attachments[1].fields[0].title).to.include(weatherServiceData.weather[0].description);
+                expect(formatRichWeather(weatherServiceData, location).attachments[1].text).toContain(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[1].fields[0].title).toContain(weatherServiceData.weather[0].description);
             });
 
             it("returns a weather report that contains the current humidity", function () {
                 expectation = 'The current humidity is:';
 
-                expect(formatRichWeather(weatherServiceData, location).attachments[2].text).to.include(expectation);
-                expect(formatRichWeather(weatherServiceData, location).attachments[2].fields[0].title).to.include(weatherServiceData.main.humidity + '%');
+                expect(formatRichWeather(weatherServiceData, location).attachments[2].text).toContain(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[2].fields[0].title).toContain(weatherServiceData.main.humidity + '%');
             });
 
             it("returns a weather report that contains the current wind speed", function () {
                 expectation = 'The current wind speed is:';
 
-                expect(formatRichWeather(weatherServiceData, location).attachments[3].text).to.include(expectation);
-                expect(formatRichWeather(weatherServiceData, location).attachments[3].fields[0].title).to.equal(weatherServiceData.wind.speed);
+                expect(formatRichWeather(weatherServiceData, location).attachments[3].text).toContain(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[3].fields[0].title).toBe(weatherServiceData.wind.speed);
             });
 
             it("returns a weather report that contains the current temperature", function () {
                 expectation = 'The current temperature is:';
 
-                expect(formatRichWeather(weatherServiceData, location).attachments[4].text).to.include(expectation);
-                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[0].title).to.include(weatherServiceData.main.temp + 'K');
-                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[1].title).to.include(convertKtoF(weatherServiceData.main.temp) + 'F');
-                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[2].title).to.include(convertKtoC(weatherServiceData.main.temp) + 'C');
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].text).toContain(expectation);
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[0].title).toContain(weatherServiceData.main.temp + 'K');
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[1].title).toContain(convertKtoF(weatherServiceData.main.temp) + 'F');
+                expect(formatRichWeather(weatherServiceData, location).attachments[4].fields[2].title).toContain(convertKtoC(weatherServiceData.main.temp) + 'C');
             });
         });
 
@@ -104,7 +102,7 @@ describe("weather formatter", function () {
                 convertKtoF(weatherServiceData.main.temp) + 'F, ' +
                 convertKtoC(weatherServiceData.main.temp) + 'C';
 
-            expect(formatTextWeather(weatherServiceData, location, 'temp')).to.equal(expectation);
+            expect(formatTextWeather(weatherServiceData, location, 'temp')).toBe(expectation);
         });
 
         describe("for a rain request returns a rain report", function() {
@@ -112,7 +110,7 @@ describe("weather formatter", function () {
             it('when the weather data indicates rain', function () {
                 expectation = 'It is currently raining in ' + location;
 
-                expect(formatTextWeather(weatherServiceData, location, 'rain')).to.equal(expectation);
+                expect(formatTextWeather(weatherServiceData, location, 'rain')).toBe(expectation);
             });
 
             it('when the weather data indicates no rain', function () {
@@ -120,7 +118,7 @@ describe("weather formatter", function () {
 
                 expectation = 'There is no rain currently in ' + location;
 
-                expect(formatTextWeather(weatherServiceData, location, 'rain')).to.equal(expectation);
+                expect(formatTextWeather(weatherServiceData, location, 'rain')).toBe(expectation);
             });
         });
 
@@ -131,7 +129,7 @@ describe("weather formatter", function () {
 
                 expectation = 'It is currently snowing in ' + location;
 
-                expect(formatTextWeather(weatherServiceData, location, 'snow')).to.equal(expectation);
+                expect(formatTextWeather(weatherServiceData, location, 'snow')).toBe(expectation);
             });
 
             it('when the weather data indicates no snow', function () {
@@ -139,7 +137,7 @@ describe("weather formatter", function () {
 
                 expectation = 'There is no snow falling in ' + location;
 
-                expect(formatTextWeather(weatherServiceData, location, 'snow')).to.equal(expectation);
+                expect(formatTextWeather(weatherServiceData, location, 'snow')).toBe(expectation);
             });
         });
     });
