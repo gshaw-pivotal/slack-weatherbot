@@ -7,7 +7,7 @@ formatTextWeather = function (forecast, location, outputOption) {
             return 'The current weather in ' + location + ' is: \n' +
                 forecast.weather[0].description +
                 '\n with a humidity of ' + forecast.main.humidity + '%' +
-                '\n and a wind speed of ' + forecast.wind.speed +
+                '\n and a wind speed of ' + forecast.wind.speed + 'm/s' +
                 '\n at ' + forecast.main.temp + 'K, ' +
                 convertKtoF(forecast.main.temp) + 'F, ' +
                 convertKtoC(forecast.main.temp) + 'C';
@@ -42,7 +42,7 @@ formatRichWeather = function (forecast, location) {
             },
             buildWeatherAttachment('It is currently:', forecast.weather[0].description),
             buildWeatherAttachment('The current humidity is:', forecast.main.humidity + '%'),
-            buildWeatherAttachment('The current wind speed is:', forecast.wind.speed),
+            buildWeatherAttachment('The current wind speed is:', forecast.wind.speed + 'm/s'),
             buildTemperatureWeatherAttachment('The current temperature is:', forecast.main.temp)
         ]
     };

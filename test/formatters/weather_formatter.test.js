@@ -49,7 +49,7 @@ describe("weather formatter", function () {
                 expectation = 'The current weather in ' + location + ' is: \n' +
                     weatherServiceData.weather[0].description +
                     '\n with a humidity of ' + weatherServiceData.main.humidity + '%' +
-                    '\n and a wind speed of ' + weatherServiceData.wind.speed +
+                    '\n and a wind speed of ' + weatherServiceData.wind.speed + 'm/s' +
                     '\n at ' + weatherServiceData.main.temp + 'K, ' +
                     convertKtoF(weatherServiceData.main.temp) + 'F, ' +
                     convertKtoC(weatherServiceData.main.temp) + 'C'
@@ -83,7 +83,7 @@ describe("weather formatter", function () {
                 expectation = 'The current wind speed is:';
 
                 expect(formatRichWeather(weatherServiceData, location).attachments[3].text).toContain(expectation);
-                expect(formatRichWeather(weatherServiceData, location).attachments[3].fields[0].title).toBe(weatherServiceData.wind.speed);
+                expect(formatRichWeather(weatherServiceData, location).attachments[3].fields[0].title).toBe(weatherServiceData.wind.speed + 'm/s');
             });
 
             it("returns a weather report that contains the current temperature", function () {
